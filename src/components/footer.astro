@@ -1,0 +1,23 @@
+---
+const currentYear = new Date().getFullYear();
+const navItems = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+  { name: 'Blog', url: '/blog' }
+];
+---
+
+<footer class="mt-16 pt-8 border-t border-gray-200 flex justify-between text-sm opacity-80 flex-wrap">
+  <div class="copyright">
+    &copy; {currentYear} Lutfy.
+  </div>
+  
+  <nav class="flex gap-4 items-center">
+    {navItems.map((item, index) => (
+      <>
+        <a href={item.url} class="text-inherit no-underline hover:underline">{item.name}</a>
+        {index < navItems.length - 1 && <span class="opacity-50">|</span>}
+      </>
+    ))}
+  </nav>
+</footer>

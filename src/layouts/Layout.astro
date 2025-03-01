@@ -1,0 +1,43 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+}
+
+const { 
+  title = "Lutfi",
+  description = "Personal website of Naufal Lutfi"
+} = Astro.props;
+
+---
+<script src="/src/scripts/themeToggle.js" is:beforeinteractive></script>
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300..700&display=swap" rel="stylesheet">
+  </head>
+  <body class="bg-white dark:bg-gray-900 text-gray-900 dark:text-gray-100 font-sans leading-relaxed">
+    <div class="container max-w-3xl mx-auto w-11/12 py-8">
+      <slot name="header" />
+      <main>
+        <slot />
+      </main>
+      <slot name="footer" />
+    </div>
+  </body>
+</html>
+
+<!-- Client-side script -->
+<script>
+  import { initThemeToggle } from '../scripts/ThemeToggle.js';
+  initThemeToggle();
+</script>

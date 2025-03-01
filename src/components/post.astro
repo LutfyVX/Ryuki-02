@@ -1,0 +1,16 @@
+---
+export interface Props {
+  date: string;
+  title: string;
+  url?: string;
+}
+
+const { date, title, url = "#" } = Astro.props;
+---
+
+<div class="mb-4">
+  <p class="text-sm opacity-80 m-0">{date}</p>
+  <h3 class="mt-1 mb-0 text-base font-medium">
+    <a href={url} class="text-inherit no-underline hover:underline">{title}</a>
+  </h3>
+</div>

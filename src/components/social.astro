@@ -1,0 +1,29 @@
+---
+const socialLinks = [
+  { platform: 'GitHub', url: 'https://github.com/lutfyVX', icon: 'fab fa-github' },
+  { platform: 'Twitter', url: 'https://twitter.com/lutfyNoir', icon: 'fab fa-twitter' },
+  { platform: 'Discord', url: 'https://discord.com', icon: 'fab fa-discord' },
+  { platform: 'Email', url: 'mailto:nabilnaufal316@gmail.com', icon: 'fas fa-envelope' }
+];
+---
+
+<head> 
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+</head>
+
+<div class="flex gap-6 my-6 justify-center">
+{socialLinks.map(({ platform, url, icon }) => (
+  <div class="flex flex-col items-center space-y-1">
+    <a 
+      href={url} 
+      target="_blank" 
+      rel="noopener noreferrer" 
+      aria-label={platform} 
+      class="text-gray-900 dark:text-gray-100 opacity-70 hover:opacity-100 transition-opacity text-2xl"
+    >
+      <i class={icon}></i>
+    </a>
+    <span class="text-sm text-gray-600 dark:text-gray-400">{platform}</span>
+  </div>
+))}
+</div>

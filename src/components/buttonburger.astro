@@ -1,0 +1,61 @@
+---
+// button.astro
+// This is a replacement for your existing button.astro file
+---
+
+<button id="hamburger-button" class="md:hidden flex flex-col justify-center items-center w-8 h-8 space-y-1.5 cursor-pointer z-10">
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+    <span class="hamburger-line"></span>
+  </button>
+  
+  <style>
+    .hamburger-line {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background-color: #4b5563; /* gray-600 */
+      transition: all 0.3s ease-in-out;
+    }
+  
+    :global(.dark) .hamburger-line {
+      background-color: #d1d5db; /* gray-300 */
+    }
+  
+    /* Animation styles will be applied by JavaScript */
+    .hamburger-active span:nth-child(1) {
+      transform: translateY(8px) rotate(45deg);
+    }
+    
+    .hamburger-active span:nth-child(2) {
+      opacity: 0;
+    }
+    
+    .hamburger-active span:nth-child(3) {
+      transform: translateY(-8px) rotate(-45deg);
+    }
+  </style>
+  
+  <script>
+    // Handle hamburger button click
+    document.addEventListener('DOMContentLoaded', () => {
+      const hamburgerButton = document.getElementById('hamburger-button');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (hamburgerButton && mobileMenu) {
+        hamburgerButton.addEventListener('click', () => {
+          // Toggle active class for animation
+          hamburgerButton.classList.toggle('hamburger-active');
+          
+          // Toggle mobile menu visibility
+          if (mobileMenu.classList.contains('hidden')) {
+            mobileMenu.classList.remove('hidden');
+            mobileMenu.classList.add('flex');
+          } else {
+            mobileMenu.classList.add('hidden');
+            mobileMenu.classList.remove('flex');
+          }
+        });
+      }
+    });
+  </script>
