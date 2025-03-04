@@ -1,70 +1,35 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import MainLayout from "../layouts/Layout.astro"
 import Container from "../components/Container.astro";
 import "../styles/global.css";
 import bocchiGif from "../assets/bocchigmau.gif";
-import { SITE } from "../assets/config";
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 ---
 
-<MainLayout title="Lutfi | 404!">
+<Layout title="Lutfi | 404!">
   <Header slot="header" />
-
-  <html lang="id" data-theme="light">
-  <Layout title="404 - Not Found" description={SITE.DESCRIPTION}>
-    <Container class="flex flex-col items-center text-center min-h-screen pt-20">
-      <section class="flex flex-col items-center gap-4">
-        <img
-          src={bocchiGif.src}
-          alt="404 Not Found"
-          class="w-48 h-auto animate-fade-in">
-          
-        <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white font-mono">Oops! Tidak ada apa-apa disini</h1>
-        <p class="text-base text-gray-600 dark:text-gray-400 max-w-md font-mono">
-          Pasal 31 ayat (1) UU ITE melarang intersepsi atau penyadapan atas informasi elektronik dan/atau dokumen elektronik milik orang lain.
-        </p>
-        <a
-          href="/"
-          class="px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-300 flex items-center gap-2 font-mono"
-        >
-          <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
-          Kembali 
-        </a>
-      </section>
-    </Container>
-  </Layout>
-<Footer />
-
-  <script is:beforeinteractive>
-    const savedTheme = localStorage.getItem('theme');
-  
-    if (savedTheme) {
-      document.documentElement.setAttribute('data-theme', savedTheme);
-      if (savedTheme === 'dark') {
-        document.documentElement.classList.add('dark');
-      } else {
-        document.documentElement.classList.remove('dark');
-      }
-    } else {
-      // Gunakan preferensi sistem
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.setAttribute('data-theme', 'dark');
-        document.documentElement.classList.add('dark');
-      }
-    }
-  
-    // Dengarkan perubahan tema dari halaman lain
-    window.addEventListener('storage', (event) => {
-      if (event.key === 'theme') {
-        document.documentElement.setAttribute('data-theme', event.newValue);
-        if (event.newValue === 'dark') {
-          document.documentElement.classList.add('dark');
-        } else {
-          document.documentElement.classList.remove('dark');
-        }
-      }
-    });
-  </script>
-  
+  <Container class="flex flex-col items-center text-center min-h-screen pt-20">
+    <section class="flex flex-col items-center gap-4">
+      <img
+        src={bocchiGif.src}
+        alt="404 Not Found"
+        class="w-80 h-auto animate-fade-in"
+      />
+      <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white font-mono">
+        Oops! Tidak ada apa-apa disini
+      </h1>
+      <p class="text-base text-gray-600 dark:text-gray-400 max-w-md font-mono">
+        Pasal 31 ayat (1) UU ITE melarang intersepsi atau penyadapan atas informasi elektronik dan/atau dokumen elektronik milik orang lain.
+      </p>
+      <a
+        href="/"
+        class="px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-300 flex items-center gap-2 font-mono"
+      >
+        <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
+        Kembali
+      </a>
+    </section>
+  </Container>
+  <Footer />
+</Layout>

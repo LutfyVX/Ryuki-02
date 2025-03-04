@@ -1,0 +1,19 @@
+<div id="loading-screen" class="fixed inset-0 flex flex-col justify-between items-center bg-white z-[9999] transition-opacity duration-500">
+    <!-- Garis Pink di Atas -->
+    <div class="w-full h-[10px] bg-pink-500"></div>
+  
+    <!-- Loading Karakter di Pojok Kanan Bawah -->
+    <div class="absolute bottom-5 right-5 flex flex-col items-center">
+      <img src="/loading-character.png" alt="Loading Character" class="w-20" />
+      <p class="text-sm text-pink-900 font-pixel">LOADING...</p>
+    </div>
+  </div>
+  
+  <script>
+    window.addEventListener("load", () => {
+      const loadingScreen = document.getElementById("loading-screen");
+      if (loadingScreen) {
+        loadingScreen.classList.add("opacity-0", "pointer-events-none");
+      }
+    });
+  </script>

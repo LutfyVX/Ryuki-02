@@ -5,8 +5,10 @@ import Footer from '../components/footer.astro';
 import SocialLinks from '../components/social.astro';
 import NewsItem from '../components/post.astro';
 import ProjectCard from '../components/project.astro';
-import DecryptedText from "../animation/DecryptedText/DecryptedText.jsx";
-import "../styles/global.css";
+import { projects } from '../data/projects.ts';
+
+
+import '../styles/global.css';
 
 
 const newsItems = [
@@ -22,40 +24,8 @@ const newsItems = [
 	}
 ];
 
-const projects = [
-	{
-		title: "Kobokan",
-		description: "Aku Sayang KOBO!"
-	},
-	{
-		title: "Lorem Ipsum",
-		description: "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Officia!"
-	},
-	{
-		title: "Lorem Ipsum",
-		description: "Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ex magnam facilis molestiae, iusto repudiandae at laboriosam, molestias aut neque repellat nulla adipisci architecto voluptatibus iste, incidunt eveniet totam ad nemo."
-	},
-	{
-		title: "Lorem Ipsum",
-		description: "Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsum perferendis quam eveniet, saepe voluptatibus laboriosam laudantium fugiat, voluptatem non a vel voluptates pariatur, esse rerum quasi alias asperiores repellat sint."
-	}
-];
 
-// Friends data
-const friends = [
-	{
-		name: "Friend 1",
-		image: "/images/friends/f-1.jpg"
-	},
-	{
-		name: "Friend 2",
-		image: "/images/friends/f-2.jpg"
-	}
-];
 ---
-
-<script src="/src/scripts/themeToggle.js" is:beforeinteractive></script>
-
 
 <MainLayout title="Lutfi | Hello!">
 	<Header slot="header" />
@@ -70,8 +40,6 @@ const friends = [
 				<p class="my-1 font-mono">(he/him)</p>
 			</div>
 		</div>
-
-		<DecryptedText Text='Your text here' />
 		
 		<p class="font-mono text-lg leading-relaxed">
 			An Student From SMK TARUNA BHAKTI Who Likes Coding, Watching Anime, and Playing Games.
@@ -97,23 +65,18 @@ const friends = [
 		<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 			{projects.map(project => (
 				<div class="font-mono">
-					<ProjectCard
-						title={project.title}
-						description={project.description}
-					/>
+					<a href={project.href} target="_blank" rel="noopener noreferrer">
+						<ProjectCard
+							title={project.title}
+							description={project.description}
+							image={project.image} 
+						/>
+					</a>
 				</div>
 			))}
 		</div>
 	</section>
-	
-	<section class="my-12">
-		<h2 class="text-2xl font-medium mb-6 font-mono">Friends :3</h2>
-		<div class="flex gap-4 flex-wrap">
-			{friends.map(friend => (
-				<img src={friend.image} alt={friend.name} class="w-24 h-24 rounded-full object-cover font-mono" />
-			))}
-		</div>
-	</section>
+
 	
 	<Footer slot="footer" />
 </MainLayout>

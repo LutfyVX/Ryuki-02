@@ -16,7 +16,7 @@
   .dark .text-gray-400,
   .bg-white,
   .dark .bg-gray-900,
-  /* Add any other elements that change with theme */
+  
   .mode-icon {
     transition: background-color var(--theme-transition-duration) ease-out,
                  color var(--theme-transition-duration) ease-out;

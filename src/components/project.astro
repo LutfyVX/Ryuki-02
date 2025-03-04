@@ -2,15 +2,26 @@
 export interface Props {
   title: string;
   description: string;
-  url?: string;
+  href?: string;
+  image?: string; // Tambahkan '?' agar optional
 }
 
-const { title, description, url = "#" } = Astro.props;
+const { title, description, href = "#", image } = Astro.props;
 ---
 
-<div class="border border-gray-200 rounded-lg p-6 transition duration-200 h-full hover:translate-y-[-2px] hover:shadow-md">
-  <h3 class="mt-0 text-lg">
-    <a href={url} class="text-inherit no-underline">{title}</a>
-  </h3>
-  <p class="mb-0 text-sm opacity-80">{description}</p>
+<div class="relative border border-gray-200 rounded-lg p-6 transition duration-200 h-full hover:translate-y-[-2px] hover:shadow-md overflow-hidden">
+  <!-- Gambar hanya muncul saat hover -->
+  <div class="absolute inset-0 bg-cover bg-center opacity-0 transition-opacity duration-300 hover:opacity-100"
+     style={`background-image: url('${image}');`}></div>
+
+  <!-- Overlay gelap untuk meningkatkan kontras -->
+  <div class="absolute inset-0 bg-black bg-opacity-40 opacity-0 transition-opacity duration-300 hover:opacity-50"></div>
+
+  <!-- Konten proyek tetap di atas -->
+  <div class="relative z-10">
+    <h3 class="mt-0 text-lg">
+      <a href={href} class="text-inherit no-underline">{title}</a>
+    </h3>
+    <p class="mb-0 text-sm opacity-80">{description}</p>
+  </div>
 </div>
