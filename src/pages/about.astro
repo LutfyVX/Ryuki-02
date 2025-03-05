@@ -2,7 +2,6 @@
 import Layout from "../layouts/Layout.astro";
 import Container from "../components/Container.astro";
 import "../styles/global.css";
-import bocchiGif from "../assets/bocchigmau.gif";
 import Header from "../components/header.astro";
 import Footer from "../components/footer.astro";
 ---
@@ -10,7 +9,35 @@ import Footer from "../components/footer.astro";
 <Layout title="Lutfi | About Me!">
   <Header slot="header" />
   <Container class="flex flex-col items-center text-center min-h-screen pt-20">
-    
+    <div class="font-mono text-left max-w-3xl mx-auto space-y-6">
+      <h1 class="text-5xl font-bold text-yellow-500">Hey, I'm Lutfi!</h1>
+      <p class="text-lg text-gray-700 dark:text-gray-300">I'm a tech enthusiast still in high school, driven by curiosity and a love for coding. I got into programming simply because I love figuring things out—I'm the type who can't resist exploring how things work!</p>
+      
+      <div>
+      <h2 class="text-3xl font-semibold text-cyan-400">Skills & Tech</h2>
+      <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 grid grid-cols-2 gap-2">
+        <li>JavaScript & TypeScript</li>
+        <li>React & Astro</li>
+        <li>Node.js & Next.js</li>
+        <li>HTML & CSS</li>
+      </ul>
+      </div>
+      
+      <div>
+      <h2 class="text-3xl font-semibold text-yellow-400">Experience</h2>
+      <p class="text-gray-700 dark:text-gray-300">Even though I'm still in school, I've built various projects, from small interactive websites to more complex applications. Learning by doing is my thing!</p>
+      </div>
+      
+      <div>
+      <h2 class="text-3xl font-semibold text-cyan-400">Where I Am</h2>
+      <p class="text-gray-700 dark:text-gray-300">Currently living in Depok, Indonesia city full of energy, culture, and endless inspiration.</p>
+      </div>
+      
+      <div>
+      <h2 class="text-3xl font-semibold text-yellow-400">Beyond Coding</h2>
+      <p class="text-gray-700 dark:text-gray-300">When I'm not coding, you’ll find me reading tech blogs, gaming, or exploring new places. Anything that keeps my curiosity alive!</p>
+      </div>
+    </div>    
   </Container>
   <Footer />
 </Layout>

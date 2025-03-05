@@ -1,0 +1,35 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Container from "../components/Container.astro";
+import "../styles/global.css";
+import bocchiGif from "../assets/bocchigmau.gif";
+import Header from "../components/header.astro";
+import Footer from "../components/footer.astro";
+---
+
+<Layout title="Lutfi | Page is still in development">
+    <Header slot="header" />
+    <Container class="flex flex-col items-center text-center min-h-screen pt-20">
+        <section class="flex flex-col items-center gap-4">
+            <img
+                src={bocchiGif.src}
+                alt="Page is still in development"
+                class="w-80 h-auto animate-fade-in"
+            />
+            <h1 class="text-3xl font-extrabold text-gray-900 dark:text-white font-mono">
+                Oops! This page is still in development
+            </h1>
+            <p class="text-base text-gray-600 dark:text-gray-400 max-w-md font-mono">
+                This page is currently under construction. Please check back later!
+            </p>
+            <a
+                href="/"
+                class="px-4 py-2 bg-cyan-500 text-white font-semibold rounded-lg shadow-md hover:bg-cyan-600 transition-all duration-300 flex items-center gap-2 font-mono"
+            >
+                <span class="transition-transform group-hover:-translate-x-1">&larr;</span>
+              Back
+            </a>
+        </section>
+    </Container>
+    <Footer />
+</Layout>

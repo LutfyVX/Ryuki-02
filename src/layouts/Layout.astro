@@ -25,15 +25,39 @@ import LoadingScreen from "../pages/loading.astro";
 
     
     <script>
-      if (
-        localStorage.theme === 'dark' ||
-        (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-      ) {
+      function applyTheme(theme: string | null) {
+      if (theme === 'dark') {
         document.documentElement.classList.add('dark');
       } else {
         document.documentElement.classList.remove('dark');
       }
+      }
+
+      // Initial theme check
+      if (
+      localStorage.theme === 'dark' ||
+      (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
+      ) {
+      applyTheme('dark');
+      } else {
+      applyTheme('light');
+      }
+
+      // Listen for changes to the prefers-color-scheme media query
+      window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      const newColorScheme = e.matches ? 'dark' : 'light';
+      applyTheme(newColorScheme);
+      localStorage.setItem('theme', newColorScheme);
+      });
+
+      // Listen for changes to the localStorage theme
+      window.addEventListener('storage', (e) => {
+      if (e.key === 'theme') {
+        applyTheme(e.newValue);
+      }
+      });
     </script>
+    
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{title}</title>
