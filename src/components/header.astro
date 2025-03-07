@@ -1,40 +1,47 @@
 ---
 import MenuButton from "./button.astro";
+import Sakana from "../components/SakanaWidget.tsx";
 import pfp from "../assets/pfp.jpg";
 
 const getNavLinkClass = (path: string, currentPath: string) => {
-    return `text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 ${
-        currentPath === path || currentPath.startsWith(path + '/') 
-            ? 'text-blue-600 dark:text-blue-400 font-bold' 
-            : ''
-    }`;
+        return `text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-200 ${
+                currentPath === path || currentPath.startsWith(path + '/') 
+                        ? 'text-blue-600 dark:text-blue-400 font-bold' 
+                        : ''
+        }`;
 };
 ---
 
-<header class="flex justify-between items-center py-4 mb-8 transition-colors duration-300 bg-white dark:bg-[#030712]">
+<header class="relative flex justify-between items-center py-4 mb-8 transition-colors duration-300 bg-white dark:bg-[#030712] z-0 overflow-hidden">
+        <!-- Sakana Widget (di belakang menu mobile) -->
+        <div class="absolute inset-0 flex justify-center items-center opacity-20 pointer-events-none z-[-10]">
+            <Sakana client:load />
+        </div>
+    
         <div class="font-mono flex items-center space-x-3">
-                <img src={pfp.src} alt="gweh" class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-900" />
-                <span class="text-gray-900 font-semibold text-lg dark:text-gray-100">lutfyVX</span>
+            <img src={pfp.src} alt="gweh" class="w-10 h-10 rounded-full border border-gray-300 dark:border-gray-900" />
+            <span class="text-gray-900 font-semibold text-lg dark:text-gray-100">lutfyVX</span>
         </div> 
-
+    
         <nav class="font-mono flex space-x-4">
-                <div class="container mx-auto flex justify-between items-center">
-                        <div class="hidden md:flex space-x-4">
-                                <a href="/" class={getNavLinkClass('/', Astro.url.pathname)}>Home</a>
-                                <span class="text-gray-300 dark:text-gray-900">|</span>
-                                <a href="/about" class={getNavLinkClass('/about', Astro.url.pathname)}>About</a>
-                                <span class="text-gray-300 dark:text-gray-900">|</span>
-                                <a href="/discuss" class={getNavLinkClass('/discuss', Astro.url.pathname)}>Discuss</a>
-                        </div>
-                        <div class="md:hidden">
-                                <MenuButton />
-                        </div>
+            <div class="container mx-auto flex justify-between items-center">
+                <div class="hidden md:flex space-x-4">
+                    <a href="/" class={getNavLinkClass('/', Astro.url.pathname)}>Home</a>
+                    <span class="text-gray-300 dark:text-gray-900">|</span>
+                    <a href="/about" class={getNavLinkClass('/about', Astro.url.pathname)}>About</a>
+                    <span class="text-gray-300 dark:text-gray-900">|</span>
+                    <a href="/discuss" class={getNavLinkClass('/discuss', Astro.url.pathname)}>Discuss</a>
                 </div>
-                <div id="mobile-menu" class="hidden flex-col fixed top-16 left-0 w-full bg-white dark:bg-gray-900 border-t p-4 space-y-2 shadow-md transition-colors duration-300 z-20">
-                        <a href="/" class={getNavLinkClass('/', Astro.url.pathname)}>Home</a>
-                        <a href="/about" class={getNavLinkClass('/about', Astro.url.pathname)}>About</a>
-                        <a href="/discuss" class={getNavLinkClass('/discuss', Astro.url.pathname)}>Discuss</a>
+                <div class="md:hidden">
+                    <MenuButton />
                 </div>
+            </div>
+            
+            <!-- Menu Mobile (z-index lebih tinggi) -->
+            <div id="mobile-menu" class="hidden flex-col fixed bottom-0 left-1/2 transform -translate-x-1/2 w-full max-w-md bg-white dark:bg-gray-900 border-t p-4 space-y-2 shadow-md transition-colors duration-300 z-20">
+                <a href="/" class={getNavLinkClass('/', Astro.url.pathname)}>Home</a>
+                <a href="/about" class={getNavLinkClass('/about', Astro.url.pathname)}>About</a>
+                <a href="/discuss" class={getNavLinkClass('/discuss', Astro.url.pathname)}>Discuss</a>
+            </div>
         </nav>
-        <!-- Rest of the code remains the same -->
-</header>
+    </header>
